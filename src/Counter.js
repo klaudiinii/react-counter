@@ -1,8 +1,9 @@
-import React, {Component} from "react" //importuje reacta i komponenty z App
+import React, {Component} from "react" //import react and components
 import "./Counter.css"
 import ButtonsPanel from "./ButtonsPanel"
 
-// //komponent funkcyjny (taki który tylko wyswietla)
+
+// //komponent funkcyjny 
 
 // const Counter = () => {
 //  return(
@@ -12,7 +13,7 @@ import ButtonsPanel from "./ButtonsPanel"
 
 
 
-// komponent klasowy (przechowuje stany, przesyla dane, bardziej)
+// komponent klasowy
 
 class Counter extends Component {
 
@@ -68,7 +69,7 @@ class Counter extends Component {
             </span> 
             <ButtonsPanel changeCounterValue={this.changeValue} resetCounterValue={this.resetCounter}/>
             
-        </div> //wrzucam do komponentu propsy (wlasciwosci z App.js
+        </div> //wrzucam do komponentu propsy z App.js
         )
     }
 
