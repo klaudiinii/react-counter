@@ -1,9 +1,8 @@
-import React, {Component} from "react" //import react and components
-import "./Counter.css"
-import ButtonsPanel from "./ButtonsPanel"
+import React, { Component } from "react"; //import react and components
+import "./Counter.css";
+import ButtonsPanel from "./ButtonsPanel";
 
-
-// //komponent funkcyjny 
+// function component
 
 // const Counter = () => {
 //  return(
@@ -11,71 +10,57 @@ import ButtonsPanel from "./ButtonsPanel"
 //  )
 // }
 
-
-
-// komponent klasowy
+// class component
 
 class Counter extends Component {
+  constructor(props) {
+    super(props);
 
-    constructor(props) {
-        super(props);
+    let initValue = 0;
 
-        let initValue = 0;
-
-
-        if ( ! isNaN(this.props.initValue) ) {
-            initValue = parseInt(this.props.initValue)
-        }
-        
-        this.state = {
-          counterValue: initValue,
-        }
-    
-      }
-
-    changeValue = () => {
-    
-        this.setState( (prevValue) => 
-          {
-            return({
-              counterValue: prevValue.counterValue + 1,
-            })
-          }
-        )
-      }
-
-
-    resetCounter = (resetCounter) => {
-
-        let initValue = 0;
-        
-        if (!resetCounter) {
-            if ( ! isNaN(this.props.initValue) ) {
-                initValue = parseInt(this.props.initValue)
-            }
-        }
-
-        this.setState({
-            counterValue: initValue,
-        })
+    if (!isNaN(this.props.initValue)) {
+      initValue = parseInt(this.props.initValue);
     }
 
-    render() {
-        return (
-        <div className="counter">
-            Licznik:
-            <span className="value">
-                {this.state.counterValue} 
-            </span> 
-            <ButtonsPanel changeCounterValue={this.changeValue} resetCounterValue={this.resetCounter}/>
-            
-        </div> //wrzucam do komponentu propsy z App.js
-        )
+    this.state = {
+      counterValue: initValue
+    };
+  }
+
+  changeValue = () => {
+    this.setState(prevValue => {
+      return {
+        counterValue: prevValue.counterValue + 1
+      };
+    });
+  };
+
+  resetCounter = resetCounter => {
+    let initValue = 0;
+
+    if (!resetCounter) {
+      if (!isNaN(this.props.initValue)) {
+        initValue = parseInt(this.props.initValue);
+      }
     }
 
+    this.setState({
+      counterValue: initValue
+    });
+  };
+
+  render() {
+    return (
+      <div className="counter">
+        Licznik:
+        <span className="value">{this.state.counterValue}</span>
+        <ButtonsPanel
+          changeCounterValue={this.changeValue}
+          resetCounterValue={this.resetCounter}
+        />
+      </div> //move props from App.js to component
+    );
+  }
 }
 
-
-
 export default Counter;
-
